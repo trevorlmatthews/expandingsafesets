@@ -68,6 +68,7 @@
             <a class="navbar-item" href="https://stonkens.github.io/back2base">
               Back to Base
             </a>
+            <a class="navbar-item" href="https://stonkens.github.io/space2time">Space to Time</a>
           </div>
         </div>
       </div>
@@ -81,19 +82,14 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Back to Base: Towards Hands-Off Learning via Safe Resets with Reach-Avoid Safety Filters</h1>
+            <h1 class="title is-1 publication-title">From Space to Time: Enabling Adaptive Safety with Learned Value Functions via Disturbance Recasting</h1>
             <div class="is-size-5 publication-authors">
-	            <span class="author-block">
-                Azra Begzadić*,</span>
-              <span class="author-block">
-                <a href="https://nikhilushinde.github.io">Nikhil Uday Shinde*</a>,</span>
               <span class="author-block">
                 <a href="https://stonkens.github.io">Sander Tonkens*,</span>
-              <span class="author-block">
-                Dylan Hirsch,</span>
-              <span class="author-block">
-                Kaleb Ugalde,
-              </span>
+                <span class="author-block">
+                <a href="https://nikhilushinde.github.io">Nikhil Uday Shinde*</a>,</span>
+	            <span class="author-block">
+                Azra Begzadić*,</span>
               <span class="author-block">
                 <a href="https://yip.eng.ucsd.edu">Michael C. Yip</a>,</span>
               <span class="author-block">
@@ -112,7 +108,7 @@
               <div class="publication-links">
                 <!-- PDF Link. -->
                 <span class="link-block">
-                  <a href="https://arxiv.org/pdf/2501.02620.pdf"
+                  <a href="static/data/space2timefinal.pdf"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -120,16 +116,36 @@
                     <span>Paper</span>
                   </a>
                 </span>
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/2501.02620" class="external-link button is-normal is-rounded is-dark">
+                <!-- <span class="link-block">
+                  <a href="https://arxiv.org/abs/2304.09850" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="ai ai-arxiv"></i>
                     </span>
                     <span>arXiv</span>
                   </a>
+                </span> -->
+                <!-- Video Link. -->
+                <span class="link-block">
+                  <a href="static/images/space2timeposter.pdf"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <!-- <i class="far fa-image"></i> -->
+                      <i class="fas fa-chalkboard-teacher"></i>
+                    </span>
+                    <span>Poster</span>
+                  </a>
                 </span>
+                 <!-- Video Link. -->
+                 <span class="link-block">
+                   <a href="static/videos/space2timevideo.mp4"
+                     class="external-link button is-normal is-rounded is-dark">
+                     <span class="icon">
+                       <i class="fas fa-video"></i>
+                     </span>
+                     <span>Video</span>
+                   </a>
+                 </span>
               </div>
-
             </div>
           </div>
         </div>
@@ -140,12 +156,47 @@
   <section class="hero teaser">
     <div class="container is-max-desktop">
       <div class="column is-centered has-text-centered">
-        <img class="algorithm" src="./static/images/coming_soon.jpg" style="width: 60%; margin-top: -50px" />
+        <img class="algorithm" src="./static/images/space2timeconceptual.png" style="width: 100%; margin-top: -50px" />
       </div>
       <h3 class="subtitle has-text-justified" style="font-size: 14px; color: #444444;">
-        <span class="small-caps-text">Coming soon!</span>
+        Conceptual overview of the <span class="small-caps-text">Space2Time</span> framework. 
+ <strong>Offline</strong>, we learn a family of safety value functions, each corresponding to a system evolving under a different time-varying disturbance profile. <strong>Online</strong>, we reparameterize an estimate of the disturbance and its derivative into its temporal equivalent to query the adaptive value function-based safety filter. 
+ <span class="small-caps-text">Space2Time</span> ensures the system is <strong>realistic</strong> about the present (based on the current disturbance) and <strong>pessimistic</strong> about the future (assuming the worst-case rate of change to persist)
       </h3>
       <hr class="section-divider">
+    </div>
+  </section>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            The widespread deployment of autonomous systems in safety-critical environments such as urban air mobility hinges on ensuring reliable, performant, and safe operation under varying environmental conditions.
+            One such approach, value function-based safety filters, minimally modifies a nominal controller to ensure safety. 
+            Recent advances leverage offline learned value functions to scale these safety filters to high-dimensional systems. 
+            However, these methods assume detailed priors on all possible sources of model mismatch, in the form of disturbances in the environment -- information that is rarely available in real world settings. 
+            Even in well-mapped environments like urban canyons or industrial sites, drones encounter complex, spatially-varying disturbances arising from payload-drone interaction, turbulent airflow, and other environmental factors. 
+            We introduce <span class="small-caps-text">Space2Time</span>, which enables safe and adaptive deployment of offline-learned safety filters under unknown, spatially-varying disturbances. 
+            The key idea is to reparameterize spatial variations in disturbance as temporal variations, enabling the use of precomputed value functions during online operation.
+            We validate <span class="small-caps-text">Space2Time</span> on a quadcopter through extensive simulations and hardware experiments, demonstrating significant improvement over baselines.
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
+      <!-- Paper video. -->
+      <!-- <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Video</h2>
+          <div class="publication-video">
+            <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0" frameborder="0"
+              allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div> -->
+      <!--/ Paper video. -->
     </div>
   </section>
 
@@ -156,10 +207,10 @@
       <h2 class="title">Citation</h2>
       If you use our method or code in your research, please consider citing the paper as follows:
 
-      <pre><code>@inproceedings{BegzadicShinde2025,
-  author    = {Begzadić, A., Shinde, N. U. and Tonkens, S. and Hirsch, D. and Ugalde, K. and Yip, M. C. and Cortés, J. and Herbert, S.},
-  title     = {Back to Base: Towards Hands-Off Learning via Safe Resets with Reach-Avoid Safety Filters},
-  booktitle = {Learning for Dynamics and Control },
+      <pre><code>@inproceedings{TonkensShinde2025,
+  author    = {Tonkens, S. and Shinde, N. U. and Begzadić, A. and Yip, M. C. and Cortés, J. and Herbert, S.},
+  title     = {From Space to Time: Enabling Adaptive Safety with Learned Value Functions via Disturbance Recasting},
+  booktitle = {Conference on Robot Learning},
   year      = {2025},
 }</code></pre>
     </div>
