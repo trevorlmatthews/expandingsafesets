@@ -4,10 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-    content="Back to Base: Towards Hands-Off Learning via Safe Resets with Reach-Avoid Safety Filters.">
+    content="From Space to Time: Enabling Adaptive Safety with Learned Value Functions via Disturbance Recasting.">
   <meta name="keywords" content="HJ Reachability, Safety">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Back to Base: Towards Hands-Off Learning via Safe Resets with Reach-Avoid Safety Filters</title>
+  <title>From Space to Time: Enabling Adaptive Safety with Learned Value Functions via Disturbance Recasting</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
@@ -24,6 +24,8 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <style>
     .link-block {
@@ -200,6 +202,123 @@
     </div>
   </section>
 
+    <section class="section">
+    <div class="container is-max-desktop">
+      <hr class="section-divider">
+      <!-- Method. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Offline formulation</h2>
+        </div>
+      </div>
+      <div class="columns is-centered has-text-centered">
+        <p>
+          <div class="content has-text-justified">
+          We solve a reach-avoid problem for a system with time-varying disturbances to learn a safety value function. 
+          The disturbance is modeled as being time-varying (here linear for simplicity), reaching its maximum value at the end of the horizon, i.e. at the initial time \(t = 0\).
+          <br>
+            <p>$$\mathcal{D}_\text{tv}(\dot{d},t)=\big\{d\in \mathbb{R} \mid \lvert d \rvert \leq \max\{0, d_{\max} - \lvert t \rvert \dot{d}\}\big\}$$</p>
+
+            <p>$$\dot{z} = \hat{f}(z,u, \eta) =
+\begin{bmatrix}
+\dot{x} \\ \ddot{d}
+\end{bmatrix}
+=
+\begin{bmatrix}
+f(x)+g(x)u+ \eta\\ 0
+\end{bmatrix}$$</p>
+          <br>
+          The target set \(\mathcal{T}\), with, target function \(l\) such that \(\mathcal{T}:=\{x\in \mathbb{R}^n \mid l(x) \geq 0\}\) is chosen such that it is control invariant under worst-case disturbance, and the failure set \(\mathcal{F}\) is such that the constraint function \(g\) describes the obstacles, \(\mathcal{F}:=\{x\in \mathbb{R}^n \mid g(x) \leq 0\}\).
+          <br>
+          <br>
+          The associated reach-avoid cost function is then defined as: \(r_{\text{RA}}(x,t,\mathbf{u}, \mathbf{d}) = \max_{\tau \in [t,0]}\min\{l(\mathbf{x}_{x,t}^{\mathbf{u},\mathbf{d}}(\tau)), \min_{s \in [t,\tau]}g(\mathbf{x}_{x,t}^{\mathbf{u}, \mathbf{d}}(s))\}\)
+
+          .
+
+          The value function is then: \(V(x,t)=\min_\limits{d \in \mathcal{D}}\max_\limits{u\in\mathcal{U}}r_{\text{RA}}(x,t,\mathbf{u},\mathbf{d})\)
+          
+        </div>
+        </p>
+      </div>
+      </div>
+      <!--/ Method. -->
+
+    </div>
+  </section>
+
+    <section class="section">
+    <div class="container is-max-desktop">
+      <hr class="section-divider">
+      <!-- Method. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Online implementation</h2>
+        </div>
+      </div>
+      <div class="columns is-centered has-text-centered">
+        <p>
+        <div class="column is half-width">
+          <div class="content has-text-justified">
+            <br>
+            We design a safety filter based on an ensemble of offline reach-avoid value functions for our system with time-varying disturbances 
+            to ensure safety for a system with spatially-varying disturbances.<br>
+            <br>
+            We assume a setting where the disturbance and its directional derivative with respect to the dynamics can be estimated online. 
+            To ensure safety, we store the past H estimated values for the directional derivative and select the maximum as our sample. 
+            Together with the current estimated disturbance, we can now define the time to return to the control invariant set. 
+            <br>
+            <br>
+            The time-varying CBF is used within the safety filter to ensure safety, with  \(E = \mathcal{D}_{\text{tv}}(\overline{D_{\tilde{f}}d}, t_\text{return})\).
+            <!-- insert image here -->
+          </div>
+        </div>
+        <div class="column is half-width">
+          <img class="algorithm" src="./static/images/space2timealgorithm.png" />
+          <br>
+          <br>
+          <img class="algorithm" src="./static/images/cbf_alg.png" />
+         
+
+        </div>
+        </p>
+      </div>
+      <!--/ Method. -->
+
+    </div>
+  </section>
+
+    <section class="section">
+    <div class="container is-max-desktop">
+      <hr class="section-divider">
+      <!-- Method. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Hardware experiments</h2>
+        </div>
+      </div>
+      <div class="columns is-centered has-text-centered">
+        <p>
+        <div class="column is half-width">
+          <div class="content has-text-justified">
+            Baseline 
+            <br>
+            <img class="algorithm" src="./static/images/baselinehardware.png" />
+            <!-- insert image here -->
+          </div>
+        </div>
+        <div class="column is half-width">
+          Ours
+          <br>
+          <img class="algorithm" src="./static/images/space2timehardware.png" />
+         
+
+        </div>
+        </p>
+      </div>
+      <!--/ Method. -->
+
+    </div>
+  </section>
 
 
   <section class="section" id="BibTeX">
