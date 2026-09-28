@@ -87,9 +87,9 @@
             <h1 class="title is-1 publication-title">Expanding Safe Sets with Learning-Based Barrier Functions and Reachability</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                <a href="https://trevorlmatthews.github.io">Trevor Matthews*</a>,</span>
+                <a href="https://trevorlmatthews.github.io">Trevor Matthews</a>,</span>
               <span class="author-block">
-                Mahesh Kumar*,</span>
+                Mahesh Kumar,</span>
               <span class="author-block">
                 Azra Begzadić,</span>
               <span class="author-block">
@@ -105,16 +105,11 @@
               </span>
             </div>
 
-            <div class="is-size-5 publication-authors">
-              <span class="author-block">University of California, San Diego (* denotes equal contribution)</span>
-              <!-- <span class="author-block"><sup>2</sup>Google Research</span> -->
-            </div>
-
             <div class="column has-text-centered">
               <div class="publication-links">
                 <!-- PDF Link. -->
                 <span class="link-block">
-                  <a href="static/data/space2timefinal.pdf"
+                  <a href="static/images/_IROS__Online_refinement_of_CBFs_using_LIDAR_and_GPs.pdf"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -123,7 +118,7 @@
                   </a>
                 </span>
 
-                <!-- arXiv Link. -->
+                <!-- arXiv Link.
                 <span class="link-block">
                   <a href="https://arxiv.org/abs/2509.19597" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
@@ -131,11 +126,11 @@
                     </span>
                     <span>arXiv</span>
                   </a>
-                </span>
+                </span> -->
 
                 <!-- Github Link. -->
                 <span class="link-block">
-                  <a href="https://github.com/YourGitHubRepoHere"
+                  <a href="https://github.com/trevorlmatthews/refinecbf_ros2/tree/feature/turtlebot_sim"
                      class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -146,7 +141,7 @@
                 
                 <!-- Poster Link. -->
                 <span class="link-block">
-                  <a href="static/images/space2timeposter.pdf"
+                  <a href="static/images/IROS26_Expanding_Safe_Sets.pdf"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <!-- <i class="far fa-image"></i> -->
@@ -239,7 +234,7 @@
               \end{equation}<p>
 
             <br>
-            We consider a monotonically decreasing nonlinear transformation \(r: \mathbb{R} \rightarrow \mathbb{R}\) to obtain the unsigned distance function \(s_{u}: \mathbb{R} \rightarrow \mathbb{R}\) from the posterior mean of the surrogate function: \(s_{u}(x) = r(\mu_s(x)) \).
+            We consider a monotonically decreasing nonlinear transformation \(r: \mathbb{R} \rightarrow \mathbb{R}\) to obtain the unsigned distance function \(\tilde s_{u}: \mathbb{R} \rightarrow \mathbb{R}\) from the posterior mean of the surrogate function: \(\tilde s_{u}(x) = r(s(x)) \).
             By considering only monotonically decreasing transformations, we can propegate the above probablistic error bound to the unsigned distance function.
             Given a smooth surrogate function \(s\) (with appropriately smooth kernel \(k_{s}()\)), and r being a composition of smooth nonlinear transformations, we ensure that the resulting distance function is smooth.
             As a result, applying the transformation \(r(\cdot)\) reverses the signs of the probablistic bounds, yielding:
@@ -250,19 +245,11 @@
 
             with probability of at least \(1 - \delta\).
             <br>
-            To obtain a smooth SDF estimate \( \tilde{d}(x) \), we apply a Bayesian Hilbert Map (BHM) \(b(x)\) to \(s_{u}(x)\), assigning the sign at each state:
+            To obtain a smooth SDF estimate \( \tilde{d}(x) \), we apply a Bayesian Hilbert Map (BHM) \(b(x)\) to \(\tilde s(x)\), assigning the sign at each state:
             <p>\begin{equation}
-              \tilde{d}(x) = b(x) r(\mu_{s}(x)).
+              \tilde{d}(x) = b(x) \tilde s(x).
               \end{equation}<p>
-            In this work, we assume perfect knowledge of the BHM (i.e \(b(x) = \text{sign}(d(x)) \)). If the sign is positive, the inequality remains unchanged and if the sign is negative, the inequality is flipped.
             <br>
-            As a result, we define the following bounds on the SDF:
-
-            <p>\begin{equation}
-              \underline{d}(x) \leq \tilde{d}(x) \leq \bar{d}(x),
-              \end{equation}</p>
-          where \( \underline{d}\) and \( \bar{d}\) are the lower and upper bounds of the SDF respectively with probability of at least \(1 - \delta\).
-          
         </div>
         </p>
       </div>
@@ -451,7 +438,7 @@
       <h2 class="title">Citation</h2>
       If you use our method or code in your research, please consider citing the paper as follows:
 
-      <pre><code>@inproceedings{MatthewsKumar2025,
+      <pre><code>@inproceedings{expandingsafesets2026,
   author    = {Matthews, T. and Kumar, M. and Begzadić, A. and Tonkens, S. and Dai, Z. and Atanasov, N. and Cortés, J. and Herbert, S.},
   title     = {Expanding Safe Sets with Learning-Based Barrier Functions and Reachability},
   booktitle = {arXiv preprint arXiv:XXXXX},
